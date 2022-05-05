@@ -4,28 +4,31 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-    public float Speed = 2.0f;
-    public float MaxMovement = 2.0f;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //this script is all about move & input
 
-    // Update is called once per frame
+
+    public float Speed = 2.0f;
+    public float MaxMovement = 2.0f;//boundry
+
     void Update()
     {
-        float input = Input.GetAxis("Horizontal");
+        //****************** Input & Move *********************
+        float input = Input.GetAxis("Horizontal");            
 
         Vector3 pos = transform.position;
-        pos.x += input * Speed * Time.deltaTime;
+        // delclare a NEW vector3
+        // initialized with the pose of gameobject at every frame
+
+        pos.x = pos.x + (input * Speed * Time.deltaTime);
 
         if (pos.x > MaxMovement)
-            pos.x = MaxMovement;
-        else if (pos.x < -MaxMovement)
-            pos.x = -MaxMovement;
+        { pos.x = MaxMovement; }
+        if (pos.x < -MaxMovement)
+        { pos.x = -MaxMovement; }
 
         transform.position = pos;
+ 
+        //*****************************************************
+
     }
 }
